@@ -3,8 +3,9 @@ const router = express.Router();
 
 const tourController = require("../Controllers/tour.controller");
 
-router.route("/").post(tourController.saveTour);
+// router.route("/trending").patch(tourController.saveTour);
+// router.route("/cheapest").patch(tourController.saveTour);
 
-router.route("/:id").get(tourController.getTourById);
+router.route("/:id").patch(tourController.UpdateTour);
 
 module.exports = router;
