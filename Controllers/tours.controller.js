@@ -8,14 +8,34 @@ exports.getTours = async (req, res, next) => {
   try {
     const queries = {};
 
+    // fields
+
+    let filters = { ...req.query };
+
     if (req.query.fields) {
       const fields = req.query.fields.split(",").join(" ");
       // console.log(fields);
       queries.fields = fields;
     }
 
-    const result = await getToursServices(queries);
-    console.log("hello");
+    // sort
+
+    if (req.query.sort) {
+      const sort = req.query.sort.split(",").join(" ");
+      queries.sort = sort;
+    }
+    //page and limit : pagination
+    const page = req.query.page;
+
+    if (page) {
+      const { page = 1, limit = 10 } = req.query;
+
+      const skip = (page - 1) * parseInt(limit);
+      queries.skip = skip;
+      queries.limit = parseInt(limit);
+    }
+
+    const result = await getToursServices(filters, queries);
 
     res.status(200).json({
       status: "success",
