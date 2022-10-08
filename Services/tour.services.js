@@ -5,3 +5,13 @@ exports.UpdateTourService = async (id, upData) => {
   console.log(result);
   return result;
 };
+
+exports.TrendingTourSerive = async () => {
+  const result = await Tours.find({}).sort("-totalView").limit(3);
+  return result;
+};
+
+exports.CheapestTourSerive = async () => {
+  const result = await Tours.find({}).sort("price").limit(3);
+  return result;
+};

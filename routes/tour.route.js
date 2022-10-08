@@ -3,8 +3,8 @@ const router = express.Router();
 
 const tourController = require("../Controllers/tour.controller");
 
-// router.route("/trending").patch(tourController.saveTour);
-// router.route("/cheapest").patch(tourController.saveTour);
+router.route("/trending").get(tourController.TrendingTour);
+router.route("/cheapest").get(tourController.CheapestTour);
 
 router.route("/:id").patch(tourController.UpdateTour);
 
