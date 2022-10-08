@@ -13,7 +13,12 @@ exports.saveTourService = async (tour) => {
   return result;
 };
 
-exports.getTourByIdService = (id) => {
-  const result = Tours.findById({ _id: id });
-  return result;
+exports.getTourByIdService = async (id) => {
+  const incrementOne = await Tours.updateOne(
+    { _id: id },
+    { $inc: { totalView: 1 } }
+  );
+  const result = await Tours.findById({ _id: id });
+
+  return { result, incrementOne };
 };
