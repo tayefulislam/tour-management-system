@@ -25,3 +25,7 @@ const TourSchema = mongoose.Schema({
     min: [0, "Total view Cannot be nagative number"],
   },
 });
+
+const Tours = mongoose.model("Tours", TourSchema);
+
+module.exports = Tours;
