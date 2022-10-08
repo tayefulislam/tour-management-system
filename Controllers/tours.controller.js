@@ -6,7 +6,15 @@ const {
 
 exports.getTours = async (req, res, next) => {
   try {
-    const result = await getToursServices();
+    const queries = {};
+
+    if (req.query.fields) {
+      const fields = req.query.fields.split(",").join(" ");
+      // console.log(fields);
+      queries.fields = fields;
+    }
+
+    const result = await getToursServices(queries);
     console.log("hello");
 
     res.status(200).json({
