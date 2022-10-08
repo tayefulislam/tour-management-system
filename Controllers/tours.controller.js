@@ -1,4 +1,3 @@
-const Tours = require("../models/Tour");
 const { getToursServices } = require("../Services/tours.services");
 
 exports.getTours = async (req, res, next) => {

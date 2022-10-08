@@ -9,7 +9,10 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
+// Tours Route
 const toursRouter = require("./routes/tours.route");
+
+// Tour Route
 const tourRouter = require("./routes/tour.route");
 
 app.get("/", (req, res) => {
